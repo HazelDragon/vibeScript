@@ -1,7 +1,5 @@
+
 import { generateColor, generateColorRGB, generateSecondaryColorRGB, generateSecondaryColor } from "@marko19907/string-to-color";
-
-
-// const express = require('express')
 import express from "express"
 const app = express();
 const vibes = ['intense','reserved','mysterious','bubbly','kind','calm'];
@@ -13,8 +11,9 @@ app.listen(port, () => {
 })
 
 app.get('/name/:name', (req,res) => {
-    const nameColor = generateColor(req.params.name);
-    const nameColor2 = generateSecondaryColor(req.params.name);
+    const person = req.params.name
+    const primColor = generateColor(req.params.name);
+    const secColor = generateSecondaryColor(req.params.name);
     if (JSON.stringify(nameColor) < JSON.stringify(nameColor2))
     {
         console.log("yas");
@@ -26,6 +25,5 @@ app.get('/name/:name', (req,res) => {
         x = Math.floor(Math.random() * 3);
     }
     
-    res.send(`${req.params.name} is ${vibes[x]} and colors are ${nameColor} and ${nameColor2}`);
+    res.send(`${person} is ${vibes[x]} and colors are ${primColor} and ${secColor}`);
 });
-
