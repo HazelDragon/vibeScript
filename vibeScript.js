@@ -15,7 +15,7 @@ const message = {
     primaryColor: [],
     secondaryColor: [],
     luck: [],
-    vibe: vibes,
+    vibe: [],
 }
 
 
@@ -26,8 +26,8 @@ app.listen(port, () => {
 
 app.get('/name/:name', (req,res) => {
     message.name = req.params.name
-    message.primaryColor = generateColor(req.params.name);
-    message.secondaryColor = generateSecondaryColor(req.params.name);
+    message.primaryColor = generateColorRGB(req.params.name);
+    message.secondaryColor = generateSecondaryColorRGB(req.params.name);
     if (JSON.stringify(message.primaryColor) < JSON.stringify(message.secondaryColor))
     {
         console.log("yas");
@@ -40,7 +40,8 @@ app.get('/name/:name', (req,res) => {
         x = (Math.floor(Math.random() * 3));
         message.luck = (Math.ceil(Math.random()*11));
     }
-    
+    message.vibe = vibes[x];
+
     res.send(message);
 });
 
