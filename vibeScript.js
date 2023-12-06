@@ -1,7 +1,13 @@
 
 import { generateColor, generateColorRGB, generateSecondaryColorRGB, generateSecondaryColor } from "@marko19907/string-to-color";
 import express from "express"
+import cors from 'cors'
+
 const app = express();
+app.use(cors({
+    origin: '*'
+}));
+
 const vibes = ['intense','reserved','mysterious','bubbly','kind','calm'];
 let x;
 const message = {
@@ -37,3 +43,7 @@ app.get('/name/:name', (req,res) => {
     
     res.send(message);
 });
+
+
+
+
